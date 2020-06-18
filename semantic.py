@@ -151,10 +151,10 @@ class SemanticAnalyzer(NodeVisitor):
                 raise Exception("Incompatible types in line: ")
             type_arg1 = self.__changeType(type_arg1)
             type_arg2 = self.__changeType(type_arg2)
-            if not self.__isBinaryArgsValid(node.op.name, type_arg1):
-                raise Exception(
-                    "Operation {op} not supported for types {t1} and {t2}"
-                        .format(op = node.op.name,t1 = type_arg1,t2=type_arg2))
+            #if not self.__isBinaryArgsValid(node.op.name, type_arg1):
+                # raise Exception(
+                #     "Operation {op} not supported for types {t1} and {t2}"
+                #         .format(op = node.op.name,t1 = type_arg1,t2=type_arg2))
             return self.__BinaryReturningType(node.op.name, type_arg1)
 
     def visit_IdentNode(self, node: IdentNode):

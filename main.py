@@ -1,6 +1,8 @@
 import os
 from grammar import *
 from semantic import *
+from bytecode_generator import *
+from VM import *
 
 
 def main():
@@ -10,23 +12,12 @@ def main():
     g : integer;
     c : boolean;
     a : char;
-    d,n: array [1 .. 100] of integer;
-    h : array [1 .. 7] of boolean;
-    function Alpha(a,b: integer, g:char):integer;
-    var y: integer;
-    begin 
-    g:='c';
-    c:=True;
-    ReadLn(g);    
-    if (c) then 
-    c:=False;
-    for (a:=2 to 6) do
-    begin 
-    end;
-    end;
     BEGIN    
-    h[1]:=d[2]=1; 
-    g:=g;    
+    g:=2;
+    g:=((g+1)*(g+10))*2;
+    c:= 'a' = 'b';
+    WriteLn(g); 
+    WriteLn(c); 
     END.
     '''
     prog1 = '''
@@ -117,6 +108,10 @@ END.'''
     print(*prog3.tree, sep=os.linesep)
     symb_table_builder = SemanticAnalyzer()
     symb_table_builder.visit(prog3)
+    bytecode = ByteCodeGen(prog3)
+    a = VM(bytecode.lines)
+    i = 0
+
 
 
 
